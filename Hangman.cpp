@@ -49,6 +49,7 @@ class Hangman
         std::string chars_guessed;
         int wrong_guesses;
         int remaining;
+        // chech if the letter the user guessed is in the word if not decrease the # of tries
         bool check(char user_guess)
         {
             last_guess = user_guess;    
@@ -133,9 +134,8 @@ class Hangman
 class HangmanConsole : public Hangman
 {
     public:
-        HangmanConsole(std::string start) : Hangman(start)
-        {
-        }
+        HangmanConsole(std::string start) : Hangman(start){}
+        //show the status 
         void show_status(int stage)
         {
            switch (stage)
@@ -280,6 +280,7 @@ void Word::infile()
 
 
 }
+//gather all the words that satisfy the constraints that the user inputs
 void Word::put_inarray()
 {
     choice = new std::string[count];
@@ -307,6 +308,7 @@ void Word::put_inarray()
         ifs.close();
     }
 }
+//randomly pick a word from the words we gathered from put_array
 std::string Word::get_random_word()
 {
     int random = rand() % count;     
@@ -333,7 +335,7 @@ int main()
     int mini;
     int maxi;
     std::string oneword;
-  
+    // ask for constraints 
     do{
     std::cout << "Enter min and max: ";
     std::cin >> mini >> maxi;
